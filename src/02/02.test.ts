@@ -1,6 +1,6 @@
 import { CityType } from './02_02';
 
-let city: CityType 
+let city: CityType  
 
 beforeEach( () => {
     city = {
