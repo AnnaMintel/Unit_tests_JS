@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {splitIntoWords} from './01-hello-tests/01';
 import { sum } from './03/03';
+import {User} from './06/06';
 
 var a = sum;
 const sentense = "Hello my friends!";
@@ -13,7 +14,7 @@ console.log(result);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <User />
   </React.StrictMode>,
   document.getElementById('root')
 );
