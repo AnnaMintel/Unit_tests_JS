@@ -34,3 +34,14 @@ export const moveUser = (u: UserWithLaptopType, city: string) => {
 
     return userCopy
 }
+
+export const upgradeUserLaptop = (u: UserWithLaptopType, title: string) => {
+    const userCopy = { 
+        ...u,
+        laptop : {
+            ...u.laptop, 
+            title: title
+        }
+    }
+    return userCopy
+}
