@@ -7,9 +7,16 @@ export type UserType = {
 export type LaptopType = {
     title: string
 }
+
 export type UserWithLaptopType = UserType & {
     laptop: LaptopType
 }
+
+export type UserWithBooksType = UserType & {
+    books: Array<string>
+}
+
+
 
 export const cutHair = (u: UserType , cutLength: number) => {
     // никогда ничего не меняем в данных, которые приходят. Обязательно создаем копию и с ней работаем
@@ -32,6 +39,17 @@ export const moveUser = (u: UserWithLaptopType, city: string) => {
         }
     }
 
+    return userCopy
+}
+
+export const moveUserToOtherHouse = (u: UserWithLaptopType & UserWithBooksType, house: number) => {
+    const userCopy = { 
+        ...u,
+        adress : {
+            ...u.adress, 
+            house: house
+        }
+    }
     return userCopy
 }
 
