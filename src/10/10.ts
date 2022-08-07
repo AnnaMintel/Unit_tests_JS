@@ -1,7 +1,7 @@
 export type UserType = {
     name: string
     hair: number
-    adress: {city:string, house?: number}
+    adress: { city: string, house?: number }
 }
 
 export type LaptopType = {
@@ -18,10 +18,10 @@ export type UserWithBooksType = UserType & {
 
 
 
-export const cutHair = (u: UserType , cutLength: number) => {
+export const cutHair = (u: UserType, cutLength: number) => {
     // никогда ничего не меняем в данных, которые приходят. Обязательно создаем копию и с ней работаем
     // а затем уже в конце можем переприсвоить новое значение старому. ОДнако функция должна сохраниться чистой
-    const userCopy = { 
+    const userCopy = {
         ...u,
         hair: u.hair / cutLength
     }
@@ -31,10 +31,10 @@ export const cutHair = (u: UserType , cutLength: number) => {
 }
 
 export const moveUser = (u: UserWithLaptopType, city: string) => {
-    const userCopy = { 
+    const userCopy = {
         ...u,
-        adress : {
-            ...u.adress, 
+        adress: {
+            ...u.adress,
             city: city
         }
     }
@@ -43,10 +43,10 @@ export const moveUser = (u: UserWithLaptopType, city: string) => {
 }
 
 export const moveUserToOtherHouse = (u: UserWithLaptopType & UserWithBooksType, house: number) => {
-    const userCopy = { 
+    const userCopy = {
         ...u,
-        adress : {
-            ...u.adress, 
+        adress: {
+            ...u.adress,
             house: house
         }
     }
@@ -54,12 +54,40 @@ export const moveUserToOtherHouse = (u: UserWithLaptopType & UserWithBooksType, 
 }
 
 export const upgradeUserLaptop = (u: UserWithLaptopType, title: string) => {
-    const userCopy = { 
+    const userCopy = {
         ...u,
-        laptop : {
-            ...u.laptop, 
+        laptop: {
+            ...u.laptop,
             title: title
         }
     }
+    return userCopy
+}
+
+export const addNewBooks = (u: UserWithLaptopType & UserWithBooksType, newbooks: string) => {
+    const userCopy = {
+        ...u,
+        books: [...u.books, newbooks]
+    }
+    return userCopy
+}
+
+export const updateBook = (u: UserWithLaptopType & UserWithBooksType,
+    oldBook: string,
+    newBook: string) => {
+    const userCopy = {
+        ...u,
+        books: u.books.map((book) => (book === oldBook ? newBook : book))
+    }
+
+    return userCopy
+}
+
+export const deleteBook = (u: UserWithLaptopType & UserWithBooksType, bookForDelete: string) => {
+    const userCopy = {
+        ...u,
+        books: u.books.filter(b => b !== bookForDelete)
+    }
+
     return userCopy
 }
