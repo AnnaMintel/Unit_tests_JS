@@ -1,4 +1,4 @@
-import { cutHair, UserType, UserWithLaptopType, moveUser, upgradeUserLaptop, UserWithBooksType, moveUserToOtherHouse, addNewBooks, updateBook, deleteBook, UserWithCompaniesType, addCompany } from './10';
+import { cutHair, UserType, UserWithLaptopType, moveUser, upgradeUserLaptop, UserWithBooksType, moveUserToOtherHouse, addNewBooks, updateBook, deleteBook, UserWithCompaniesType, addCompany, updateCompanyTitle } from './10';
 
 
 
@@ -179,4 +179,20 @@ test('add new company', () => {
     expect(userCopy.companies).not.toBe(user.companies)
     expect(userCopy.companies[2].title).toBe('Google')
     expect(userCopy.companies.length).toBe(3)
+})
+
+test('update company', () => {
+   
+    //попробуем вариант, когда данные будут храниться в отдельном стейте
+    let companies = {
+        'Ivan' : [{id: 1, title: "Epam"}, {id: 2, title: "Leverx"}],
+        'Hella' : [{id: 1, title: "Epam"}]
+    }
+
+   const copy = updateCompanyTitle(companies, 'Ivan', 1, "Epam")
+
+    expect(copy['Ivan']).not.toBe(companies['Ivan'])
+    expect(copy['Hella']).toBe(companies['Hella'])
+    expect(copy['Ivan'][0].title).toBe("Epam")
+
 })
