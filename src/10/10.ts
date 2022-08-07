@@ -16,6 +16,10 @@ export type UserWithBooksType = UserType & {
     books: Array<string>
 }
 
+export type UserWithCompaniesType =  {
+    companies: Array<{ title: string, id: number}>
+}
+
 
 
 export const cutHair = (u: UserType, cutLength: number) => {
@@ -89,5 +93,13 @@ export const deleteBook = (u: UserWithLaptopType & UserWithBooksType, bookForDel
         books: u.books.filter(b => b !== bookForDelete)
     }
 
+    return userCopy
+}
+
+export const addCompany = (u: UserWithLaptopType & UserWithCompaniesType, newCompany: string) => {
+    const userCopy = {
+        ...u,
+        companies: [...u.companies, {id: 3, title: newCompany}]
+    }
     return userCopy
 }

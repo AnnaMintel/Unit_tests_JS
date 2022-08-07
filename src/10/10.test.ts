@@ -1,4 +1,4 @@
-import { cutHair, UserType, UserWithLaptopType, moveUser, upgradeUserLaptop, UserWithBooksType, moveUserToOtherHouse, addNewBooks, updateBook, deleteBook } from './10';
+import { cutHair, UserType, UserWithLaptopType, moveUser, upgradeUserLaptop, UserWithBooksType, moveUserToOtherHouse, addNewBooks, updateBook, deleteBook, UserWithCompaniesType, addCompany } from './10';
 
 
 
@@ -154,4 +154,29 @@ test('delete js book', () => {
     expect(user.adress).toBe(userCopy.adress)
     expect(user.books).not.toBe(userCopy.books)
     expect(userCopy.books[2]).toBe('react')
+})
+
+test('add new company', () => {
+    let user: UserWithLaptopType & UserWithCompaniesType = {
+        name: 'Ivan',
+        hair: 70,
+        adress: { 
+            city: 'Minsk',
+            house: 12
+        },
+        laptop: {
+            title: 'Asus'
+        },
+        companies: [{id: 1, title: "Epam"},
+                    {id: 2, title: "Leverx"}]
+    }
+
+    const userCopy= addCompany(user, 'Google')
+
+    expect(user).not.toBe(userCopy)
+    expect(user.laptop).toBe(userCopy.laptop)
+    expect(user.adress).toBe(userCopy.adress)
+    expect(userCopy.companies).not.toBe(user.companies)
+    expect(userCopy.companies[2].title).toBe('Google')
+    expect(userCopy.companies.length).toBe(3)
 })
